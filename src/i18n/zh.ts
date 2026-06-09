@@ -1,0 +1,63 @@
+export const zh = {
+  translation: {
+    nav: {
+      home: "首页",
+      favorites: "收藏",
+    },
+    home: {
+      title: "免费游戏",
+      subtitle: "探索最佳免费游戏",
+      search: "搜索游戏...",
+      all: "全部",
+      filter: {
+        platform: "平台",
+        category: "分类",
+        sortBy: "排序",
+      },
+      platforms: {
+        all: "全部平台",
+        windows: "Windows",
+        browser: "浏览器",
+      },
+      categories: {
+        all: "全部分类",
+        mmorpg: "MMORPG",
+        shooter: "射击游戏",
+        pvp: "PvP",
+        mmofps: "MMO 射击",
+        survival: "生存",
+        mmo: "MMO",
+        racing: "赛车",
+        sports: "体育",
+        social: "社交",
+      },
+      sortBy: {
+        relevance: "相关度",
+        popularity: "热度",
+        releaseDate: "发布时间",
+        alphabetical: "字母序",
+      },
+      noResults: "未找到游戏",
+      loading: "加载中...",
+      error: "加载失败",
+      retry: "重试",
+    },
+    game: {
+      developer: "开发商",
+      publisher: "发行商",
+      releaseDate: "发行日期",
+      genre: "类型",
+      platform: "平台",
+      description: "游戏介绍",
+      officialSite: "官方网站",
+      addFavorite: "添加收藏",
+      removeFavorite: "取消收藏",
+      back: "返回游戏列表",
+    },
+    favorites: {
+      title: "我的收藏",
+      empty: "还没有收藏的游戏",
+      emptyHint: "浏览游戏并添加收藏吧！",
+    },
+  },
+};

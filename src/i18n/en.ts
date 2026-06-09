@@ -1,0 +1,63 @@
+export const en = {
+  translation: {
+    nav: {
+      home: "Home",
+      favorites: "Favorites",
+    },
+    home: {
+      title: "Free Games",
+      subtitle: "Discover the best free-to-play games",
+      search: "Search games...",
+      all: "All",
+      filter: {
+        platform: "Platform",
+        category: "Category",
+        sortBy: "Sort By",
+      },
+      platforms: {
+        all: "All Platforms",
+        windows: "Windows",
+        browser: "Browser",
+      },
+      categories: {
+        all: "All Categories",
+        mmorpg: "MMORPG",
+        shooter: "Shooter",
+        pvp: "PvP",
+        mmofps: "MMO FPS",
+        survival: "Survival",
+        mmo: "MMO",
+        racing: "Racing",
+        sports: "Sports",
+        social: "Social",
+      },
+      sortBy: {
+        relevance: "Relevance",
+        popularity: "Popularity",
+        releaseDate: "Release Date",
+        alphabetical: "Alphabetical",
+      },
+      noResults: "No games found",
+      loading: "Loading games...",
+      error: "Failed to load games",
+      retry: "Retry",
+    },
+    game: {
+      developer: "Developer",
+      publisher: "Publisher",
+      releaseDate: "Release Date",
+      genre: "Genre",
+      platform: "Platform",
+      description: "Description",
+      officialSite: "Official Site",
+      addFavorite: "Add to Favorites",
+      removeFavorite: "Remove from Favorites",
+      back: "Back to Games",
+    },
+    favorites: {
+      title: "My Favorites",
+      empty: "No favorite games yet",
+      emptyHint: "Browse games and add some to your favorites!",
+    },
+  },
+};
