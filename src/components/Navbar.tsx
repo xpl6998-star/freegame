@@ -23,6 +23,24 @@ export function Navbar() {
               {t('nav.home')}
             </Link>
             <Link
+              to="/epic-free"
+              className="text-slate-600 hover:text-indigo-600 transition-colors"
+            >
+              {t('nav.epicFree')}
+            </Link>
+            <Link
+              to="/steam-servers"
+              className="text-slate-600 hover:text-indigo-600 transition-colors"
+            >
+              {t('nav.steamServers')}
+            </Link>
+            <Link
+              to="/steam-user"
+              className="text-slate-600 hover:text-indigo-600 transition-colors"
+            >
+              {t('nav.steamUser')}
+            </Link>
+            <Link
               to="/favorites"
               className="text-slate-600 hover:text-indigo-600 transition-colors"
             >

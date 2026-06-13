@@ -9,6 +9,9 @@ import { AboutPage } from './pages/AboutPage';
 import { FeedbackPage } from './pages/FeedbackPage';
 import { TermsPage } from './pages/TermsPage';
 import { PrivacyPage } from './pages/PrivacyPage';
+import { SteamServersPage } from './pages/SteamServersPage';
+import { EpicFreePage } from './pages/EpicFreePage';
+import { SteamUserPage } from './pages/SteamUserPage';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -34,6 +37,9 @@ function App() {
               <Route path="/feedback" element={<FeedbackPage />} />
               <Route path="/terms" element={<TermsPage />} />
               <Route path="/privacy" element={<PrivacyPage />} />
+              <Route path="/steam-servers" element={<SteamServersPage />} />
+              <Route path="/epic-free" element={<EpicFreePage />} />
+              <Route path="/steam-user" element={<SteamUserPage />} />
             </Routes>
           </main>
           <Footer />
