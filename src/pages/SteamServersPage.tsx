@@ -21,10 +21,12 @@ export function SteamServersPage() {
   });
 
   const handleSearch = () => {
-    if (appid.trim()) {
+    if (appid.trim() && /^\d{1,20}$/.test(appid.trim())) {
       refetch();
     }
   };
+
+  const isValidAppid = (value: string) => /^\d{1,20}$/.test(value);
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -60,8 +62,15 @@ export function SteamServersPage() {
                 value={appid}
                 onChange={(e) => setAppid(e.target.value)}
                 placeholder={t('steamServers.appidPlaceholder')}
-                className="w-full px-4 py-2 rounded-lg border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                className={`w-full px-4 py-2 rounded-lg border focus:outline-none focus:ring-2 ${
+                  appid && !isValidAppid(appid)
+                    ? 'border-red-500 focus:ring-red-500'
+                    : 'border-slate-200 focus:ring-indigo-500'
+                }`}
               />
+              {appid && !isValidAppid(appid) && (
+                <p className="mt-1 text-xs text-red-500">{t('steamServers.invalidAppid')}</p>
+              )}
             </div>
             <div>
               <label className="block text-sm font-medium text-slate-700 mb-2">

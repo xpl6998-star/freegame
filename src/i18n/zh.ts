@@ -70,6 +70,7 @@ export const zh = {
       hint: "不确定游戏的 AppID？可以在 Steam 商店页地址中找到",
       appid: "AppID",
       appidPlaceholder: "输入 Steam AppID",
+      invalidAppid: "AppID 必须是纯数字",
       name: "服务器名称",
       namePlaceholder: "输入服务器名称关键词",
       limit: "返回数量",

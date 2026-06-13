@@ -70,6 +70,7 @@ export const en = {
       hint: "Don't know the AppID? You can find it in the Steam store page URL.",
       appid: "AppID",
       appidPlaceholder: "Enter Steam AppID",
+      invalidAppid: "AppID must be numeric only",
       name: "Server Name",
       namePlaceholder: "Enter server name keyword",
       limit: "Result Limit",
