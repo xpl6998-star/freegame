@@ -5,10 +5,9 @@ import type { Platform, Category, SortBy } from '../api/types';
 import { FilterBar } from '../components/FilterBar';
 import { GameGrid } from '../components/GameGrid';
 import { useLanguage } from '../hooks/useLanguage';
-import type { LocalizedGame } from '../api/gamesZh';
 
 export function HomePage() {
-  const { t, isZh } = useLanguage();
+  const { t } = useLanguage();
   const [platform, setPlatform] = useState<Platform>('all');
   const [category, setCategory] = useState<Category>('all');
   const [sortBy, setSortBy] = useState<SortBy>('relevance');
