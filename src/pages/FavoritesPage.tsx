@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import { fetchGames } from '../api/games';
+import { fetchGames, getLocalizedGame } from '../api/gamesZh';
 import { useFavoritesStore } from '../stores/favorites';
 import { GameGrid } from '../components/GameGrid';
 import { useLanguage } from '../hooks/useLanguage';
-import { useGameTranslation } from '../hooks/useGameTranslation';
+import { useMemo } from 'react';
 
 export function FavoritesPage() {
-  const { t, isZh } = useLanguage();
+  const { t } = useLanguage();
   const { favorites } = useFavoritesStore();
 
   const { data: allGames, isLoading } = useQuery({
@@ -14,11 +14,14 @@ export function FavoritesPage() {
     queryFn: () => fetchGames(),
   });
 
-  const { translatedGames } = useGameTranslation(allGames || [], isZh);
+  const localizedGames = useMemo(() => {
+    if (!allGames) return [];
+    return allGames.map(game => getLocalizedGame(game));
+  }, [allGames]);
 
-  const favoriteGames = translatedGames?.filter((game) =>
-    favorites.includes(game.id)
-  ) || [];
+  const favoriteGames = useMemo(() => {
+    return localizedGames.filter((game) => favorites.includes(game.id));
+  }, [localizedGames, favorites]);
 
   return (
     <div className="min-h-screen bg-slate-50">

@@ -1,33 +1,9 @@
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-import { fetchGameById } from '../api/games';
+import { fetchGameById, getLocalizedGame } from '../api/gamesZh';
 import { useFavoritesStore } from '../stores/favorites';
 import { useLanguage } from '../hooks/useLanguage';
-import { useGameDetailTranslation } from '../hooks/useGameTranslation';
-
-const genreMap: Record<string, string> = {
-  mmorpg: 'MMORPG',
-  shooter: '射击',
-  pvp: 'PvP',
-  mmofps: 'MMO射击',
-  survival: '生存',
-  mmo: 'MMO',
-  racing: '赛车',
-  sports: '体育',
-  social: '社交',
-  moba: 'MOBA',
-  fighting: '格斗',
-  strategy: '策略',
-  card: '卡牌',
-  action: '动作',
-  adventure: '冒险',
-};
-
-const platformMap: Record<string, string> = {
-  windows: '电脑',
-  browser: '网页',
-  all: '全部',
-};
+import { useMemo } from 'react';
 
 export function GameDetailPage() {
   const { id } = useParams<{ id: string }>();
@@ -40,7 +16,10 @@ export function GameDetailPage() {
     enabled: !!id,
   });
 
-  const { translatedGame } = useGameDetailTranslation(game, isZh);
+  const localizedGame = useMemo(() => {
+    if (!game) return null;
+    return getLocalizedGame(game);
+  }, [game]);
 
   if (!id) {
     return (
@@ -58,7 +37,7 @@ export function GameDetailPage() {
     );
   }
 
-  if (error || !translatedGame) {
+  if (error || !localizedGame) {
     return (
       <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-red-500">{t('home.error')}</div>
@@ -66,22 +45,19 @@ export function GameDetailPage() {
     );
   }
 
-  const isFav = isFavorite(translatedGame.id);
+  const isFav = isFavorite(localizedGame.id);
 
   const handleFavorite = () => {
     if (isFav) {
-      removeFavorite(translatedGame.id);
+      removeFavorite(localizedGame.id);
     } else {
-      addFavorite(translatedGame.id);
+      addFavorite(localizedGame.id);
     }
   };
 
-  const displayGenre = isZh
-    ? (genreMap[translatedGame.genre.toLowerCase()] || translatedGame.genre)
-    : translatedGame.genre;
-  const displayPlatform = isZh
-    ? (platformMap[translatedGame.platform.toLowerCase()] || translatedGame.platform)
-    : translatedGame.platform;
+  const displayGenre = isZh ? localizedGame.genre_zh : localizedGame.genre;
+  const displayPlatform = isZh ? localizedGame.platform_zh : localizedGame.platform;
+  const displayDescription = isZh ? localizedGame.description_zh : localizedGame.short_description;
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -97,8 +73,8 @@ export function GameDetailPage() {
         <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-slate-200">
           <div className="relative aspect-video">
             <img
-              src={translatedGame.thumbnail}
-              alt={translatedGame.title}
+              src={localizedGame.thumbnail}
+              alt={localizedGame.title}
               className="w-full h-full object-cover"
             />
           </div>
@@ -107,7 +83,7 @@ export function GameDetailPage() {
             <div className="flex items-start justify-between gap-4 mb-6">
               <div>
                 <h1 className="text-3xl font-bold text-slate-800 mb-2">
-                  {translatedGame.title}
+                  {localizedGame.title}
                 </h1>
                 <div className="flex flex-wrap gap-2">
                   <span className="px-3 py-1 text-sm font-medium rounded-full bg-indigo-100 text-indigo-700">
@@ -136,19 +112,19 @@ export function GameDetailPage() {
                 <div className="text-xs text-slate-500 mb-1">
                   {t('game.developer')}
                 </div>
-                <div className="font-medium text-slate-800">{translatedGame.developer}</div>
+                <div className="font-medium text-slate-800">{localizedGame.developer}</div>
               </div>
               <div className="p-4 bg-slate-50 rounded-xl">
                 <div className="text-xs text-slate-500 mb-1">
                   {t('game.publisher')}
                 </div>
-                <div className="font-medium text-slate-800">{translatedGame.publisher}</div>
+                <div className="font-medium text-slate-800">{localizedGame.publisher}</div>
               </div>
               <div className="p-4 bg-slate-50 rounded-xl">
                 <div className="text-xs text-slate-500 mb-1">
                   {t('game.releaseDate')}
                 </div>
-                <div className="font-medium text-slate-800">{translatedGame.release_date}</div>
+                <div className="font-medium text-slate-800">{localizedGame.release_date}</div>
               </div>
               <div className="p-4 bg-slate-50 rounded-xl">
                 <div className="text-xs text-slate-500 mb-1">
@@ -163,13 +139,13 @@ export function GameDetailPage() {
                 {t('game.description')}
               </h2>
               <p className="text-slate-600 leading-relaxed">
-                {translatedGame.short_description}
+                {displayDescription}
               </p>
             </div>
 
-            {translatedGame.game_url && (
+            {localizedGame.game_url && (
               <a
-                href={translatedGame.game_url}
+                href={localizedGame.game_url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-indigo-600 text-white font-medium rounded-xl hover:bg-indigo-700 transition-colors"

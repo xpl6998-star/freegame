@@ -15,7 +15,7 @@ export function Footer() {
       <div className="fixed right-4 bottom-8 flex flex-col gap-3 z-50">
         <button
           onClick={scrollToTop}
-          className="w-12 h-12 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 transition-colors flex items-center justify-center"
+          className="w-12 h-12 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 transition-all duration-300 flex items-center justify-center hover:shadow-xl hover:-translate-y-0.5"
           title="返回顶部"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -24,7 +24,7 @@ export function Footer() {
         </button>
         <button
           onClick={refreshPage}
-          className="w-12 h-12 bg-slate-600 text-white rounded-full shadow-lg hover:bg-slate-700 transition-colors flex items-center justify-center"
+          className="w-12 h-12 bg-indigo-600 text-white rounded-full shadow-lg hover:bg-indigo-700 transition-all duration-300 flex items-center justify-center hover:shadow-xl hover:-translate-y-0.5"
           title="刷新页面"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

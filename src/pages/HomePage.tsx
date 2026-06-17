@@ -1,11 +1,11 @@
 import { useState, useMemo } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { fetchGames } from '../api/games';
+import { fetchGames, getLocalizedGame } from '../api/gamesZh';
 import type { Platform, Category, SortBy } from '../api/types';
 import { FilterBar } from '../components/FilterBar';
 import { GameGrid } from '../components/GameGrid';
 import { useLanguage } from '../hooks/useLanguage';
-import { useGameTranslation } from '../hooks/useGameTranslation';
+import type { LocalizedGame } from '../api/gamesZh';
 
 export function HomePage() {
   const { t, isZh } = useLanguage();
@@ -24,16 +24,19 @@ export function HomePage() {
       }),
   });
 
-  const { translatedGames } = useGameTranslation(games || [], isZh);
+  const localizedGames = useMemo(() => {
+    if (!games) return [];
+    return games.map(game => getLocalizedGame(game));
+  }, [games]);
 
   const filteredGames = useMemo(() => {
-    if (!translatedGames) return [];
-    if (!search.trim()) return translatedGames;
+    if (!localizedGames) return [];
+    if (!search.trim()) return localizedGames;
     const lowerSearch = search.toLowerCase();
-    return translatedGames.filter((game) =>
+    return localizedGames.filter((game) =>
       game.title.toLowerCase().includes(lowerSearch)
     );
-  }, [translatedGames, search]);
+  }, [localizedGames, search]);
 
   return (
     <div className="min-h-screen bg-slate-50">
@@ -89,7 +92,7 @@ export function HomePage() {
         )}
 
         {!isLoading && !error && filteredGames.length > 0 && (
-          <GameGrid games={filteredGames} />
+          <GameGrid games={filteredGames as any} />
         )}
       </div>
     </div>
