@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wgogogo.com/sitemap.xml
