@@ -2,6 +2,16 @@
 <html lang="zh">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      // GitHub Pages SPA fallback: restore the path that 404.html saved
+      (function () {
+        var p = sessionStorage.getItem('spa-redirect-path');
+        if (p && p !== location.pathname) {
+          sessionStorage.removeItem('spa-redirect-path');
+          history.replaceState(null, '', p);
+        }
+      })();
+    </script>
     <link rel="icon" type="image/png" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="google-adsense-account" content="ca-pub-2579756571711911" />
@@ -9,7 +19,7 @@
     <title>冲冲冲免费游戏 - 最新Epic/Steam免费游戏大全 | 极致好玩的免费游戏推荐</title>
     <meta name="description" content="冲冲冲免费游戏为您精选全球最新、最热的免费游戏推荐。涵盖Epic限时免费、Steam免费游戏、大型MMORPG、绝地求生大逃杀、射击、策略等全平台免费游戏下载与评测，助您轻松探索最佳免费游戏！">
     <meta name="keywords" content="免费游戏, 免费游戏推荐, Epic免费游戏, Steam限免, 免费MMORPG, 免费射击游戏">
-    <link rel="canonical" href="https://www.wgogogo.com/" />
+    <link rel="canonical" href="https://wgogogo.com/" />
     <meta property="og:title" content="冲冲冲免费游戏 - 最新Epic/Steam免费游戏大全">
     <meta property="og:description" content="精选全球最新、最热的免费游戏推荐，涵盖Epic限时免费、Steam免费游戏、MMORPG、射击、策略等全平台免费游戏。">
     <meta property="og:type" content="website">

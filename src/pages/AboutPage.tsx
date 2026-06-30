@@ -21,7 +21,7 @@ export function AboutPage() {
             <h2 className="text-xl font-semibold text-slate-700 mb-3">联系方式</h2>
             <p className="text-slate-600 leading-relaxed">
               邮箱：contact@wgogogo.com<br />
-              网站：game.wgogogo.com
+              网站：wgogogo.com
             </p>
           </section>
         </div>

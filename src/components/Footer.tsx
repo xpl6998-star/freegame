@@ -59,7 +59,7 @@ export function Footer() {
               <h4 className="text-white font-semibold mb-3">联系方式</h4>
               <ul className="space-y-2 text-sm">
                 <li>邮箱：contact@wgogogo.com</li>
-                <li>网站：game.wgogogo.com</li>
+                <li>网站：wgogogo.com</li>
               </ul>
             </div>
           </div>

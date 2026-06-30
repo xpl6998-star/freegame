@@ -16,7 +16,7 @@ function buildItemListSchema(games: LocalizedGame[]) {
         '@type': 'Game',
         name: game.title,
         description: game.description_zh,
-        url: `https://www.wgogogo.com/#/game/${game.id}`,
+        url: `https://wgogogo.com/game/${game.id}`,
       },
     })),
   };

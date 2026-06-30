@@ -1,4 +1,4 @@
-import { HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
@@ -25,7 +25,7 @@ const queryClient = new QueryClient({
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <HashRouter>
+      <BrowserRouter>
         <div className="flex flex-col min-h-screen">
           <Navbar />
           <main className="flex-grow">
@@ -44,7 +44,7 @@ function App() {
           </main>
           <Footer />
         </div>
-      </HashRouter>
+      </BrowserRouter>
     </QueryClientProvider>
   );
 }
