@@ -51,7 +51,36 @@ export async function fetchSteamServers(params: {
   return response.json();
 }
 
+const EPIC_CACHE_KEY = 'wgogogo:epic-free';
+const EPIC_CACHE_TTL = 1000 * 60 * 60;
+
+interface CachedPayload<T> {
+  data: T;
+  timestamp: number;
+}
+
+function readCache<T>(key: string): T | null {
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as CachedPayload<T>;
+    if (!parsed?.timestamp || Date.now() - parsed.timestamp > EPIC_CACHE_TTL) return null;
+    return parsed.data;
+  } catch {
+    return null;
+  }
+}
+
+function writeCache<T>(key: string, data: T): void {
+  try {
+    localStorage.setItem(key, JSON.stringify({ data, timestamp: Date.now() }));
+  } catch {}
+}
+
 export async function fetchEpicFreeGames(): Promise<EpicFreeGame[]> {
+  const cached = readCache<EpicFreeGame[]>(EPIC_CACHE_KEY);
+  if (cached) return cached;
+
   const response = await fetch(`${BASE_URL}/game/epic-free`, { headers });
 
   if (!response.ok) {
@@ -59,7 +88,9 @@ export async function fetchEpicFreeGames(): Promise<EpicFreeGame[]> {
   }
 
   const data = await response.json();
-  return data.data || [];
+  const games = data.data || [];
+  writeCache(EPIC_CACHE_KEY, games);
+  return games;
 }
 
 export async function fetchSteamUser(params: {
